@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#map {
+  width: 80%;
+  height: 400px;
+  ;
+}
+
+.tabs .tab a {
+	color: #90caf9;
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+	color: inherit;
+}
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+	background-color: #e3f2fd7b;
+}
+.tabs .indicator {
+	background-color: #1e88e5;
+}
