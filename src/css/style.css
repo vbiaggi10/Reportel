@@ -11,18 +11,14 @@ main {
 #map {
   width: 80%;
   height: 400px;
-  ;
 }
 
-.tabs .tab a {
-	color: #90caf9;
+.logo{
+  height: 4rem;
 }
-.tabs .tab a:hover, .tabs .tab a.active {
-	color: inherit;
-}
-.tabs .tab a:focus, .tabs .tab a:focus.active{
-	background-color: #e3f2fd7b;
-}
-.tabs .indicator {
-	background-color: #1e88e5;
+
+.in-line{
+  display: inline-block;
+  margin-right: 3rem;
+  margin-left: 3rem;
 }
