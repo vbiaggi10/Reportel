@@ -20,3 +20,25 @@ window.writeNewReport = (user_id, id_service, id_operator, id_signal_type, obser
 
   return firebase.database().ref().update(updates);
 }
+
+
+window.writeNewContact = (user_id, email, celular, id_service, observation) => {
+  // A post entry.
+  var reportDataC = {
+    user_id: user_id,
+    email: email,
+    celular: celular,
+    id_service: id_service,
+    observation: observation
+  };
+
+  // Get a key for a new Post.
+  var newReportKeyC = firebase.database().ref().child('contacto').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/contacto/' + newReportKeyC] = reportDataC;
+ // updates['/user-report/' + user_id + '/' + newReportKey] = reportData;
+
+  return firebase.database().ref().update(updates);
+}
