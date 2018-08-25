@@ -10,6 +10,15 @@ const getSignal = document.querySelector('#signal');
 const submit = document.querySelector('#submit');
 const getObservation = document.querySelector('#observation');
 const radioButton = document.getElementsByName('customRadio');
+const dni = document.querySelector('#dni');
+const documentInvalid = document.querySelector('#documentInvalid');
+const service = document.querySelector('#service');
+const serviceInvalid = document.querySelector('#serviceInvalid');
+const company = document.querySelector('#companyService');
+const companyInvalid = document.querySelector('#companyInvalid');
+const signalInvalid = document.querySelector('#signalInvalid');
+const checkbox = document.querySelector('#customControlValidation1');
+const checkboxInvalid = document.querySelector('#checkboxInvalid');
 
 firebase.database().ref('/service/').on('value', snapshot => {
   snapshot.forEach(element => {
@@ -97,25 +106,23 @@ initMap = () => {
     infowindow = new google.maps.InfoWindow();
 
     createMarker(pyrmont)
-    submitReport(latitude, longitude)
+    validateReport(latitude, longitude)
   });
 }
 
 const submitReport = (latitude, longitude) => {
-  submit.addEventListener('click', () => {
-    if (getSignal.style.display === 'none') {
-      writeNewReport(getUserId.value, getServices.value, getCompanyService.value, '', getObservation.value, latitude, longitude)
-    } else {
-      for (const i in radioButton) {
-        if (radioButton[i].checked) {
-          writeNewReport(getUserId.value, getServices.value, getCompanyService.value, radioButton[i], getObservation.value, latitude, longitude)
-        }
+  if (getSignal.style.display === 'none') {
+    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, '', getObservation.value, latitude, longitude)
+  } else {
+    for (const i in radioButton) {
+      if (radioButton[i].checked) {
+        writeNewReport(getUserId.value, getServices.value, getCompanyService.value, radioButton[i].getAttribute('id'), getObservation.value, latitude, longitude)
       }
     }
-    setTimeout(() => {
-      window.location.href = 'successful.html';
-    }, 1000)
-  })
+  }
+  setTimeout(() => {
+    window.location.href = 'successful.html';
+  }, 1000)
 }
 
 const createMarker = (pyrmont) => {
@@ -123,4 +130,70 @@ const createMarker = (pyrmont) => {
     map: map,
     position: pyrmont,
   });
+}
+
+
+const validateReport = (latitude, longitude) => {
+  submit.addEventListener('click', () => {
+    const selectedService = service.options[service.selectedIndex].text;
+    const selectedCompany = company.options[company.selectedIndex].text;
+
+    for (const i in radioButton) {
+      if (!!dni.value && !!selectedService && !!selectedCompany && radioButton[i].checked && checkbox.checked) {
+        submitReport(latitude, longitude)
+      } else {
+        if (!dni.value || !/^([0-9]{8,9})*$/.test(dni.value)) {
+          documentInvalid.style.display = 'block';
+        } else if (!!dni.value && /^([0-9]{8,9})*$/.test(dni.value)) {
+          documentInvalid.style.display = 'none';
+        }
+
+        if (selectedService === 'Elija una opción') {
+          serviceInvalid.style.display = 'block';
+        } else {
+          serviceInvalid.style.display = 'none';
+        }
+
+        if (selectedCompany === 'Elija una opción') {
+          companyInvalid.style.display = 'block';
+        } else {
+          companyInvalid.style.display = 'none';
+        }
+
+        if (radioButton[i].checked) {
+          signalInvalid.style.display = 'none';
+        } else {
+          signalInvalid.style.display = 'block';
+        }
+
+        if (checkbox.checked === false) {
+          checkboxInvalid.style.display = 'block';
+        }
+      }
+    }
+
+    checkbox.addEventListener('click', () => {
+      if (checkbox.checked == true) {
+        checkboxInvalid.style.display = "none";
+      }
+    });
+
+    dni.addEventListener('keyup', () => {
+      documentInvalid.style.display = "none";
+    });
+
+    service.addEventListener('change', () => {
+      serviceInvalid.style.display = "none";
+    });
+
+    company.addEventListener('change', () => {
+      companyInvalid.style.display = "none";
+    });
+    for (const i in radioButton) {
+      radioButton[i].addEventListener('click', () => {
+        signalInvalid.style.display = "none";
+      });
+    }
+  })
+
 }

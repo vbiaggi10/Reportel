@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>REPORTEL</title>
-
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +17,7 @@
 <body>
   <div class="viewport">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">Reportel</a>
+      <a class="navbar-brand" href="index.html">Reportel</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -43,7 +41,7 @@
 
     <div class="container margin">
       <nav class="navbar">
-        <span class="navbar-brand" href="#">Nuevo reporte</span>
+        <span class="navbar-brand" href="report.html">Nuevo reporte</span>
       </nav>
     </div>
 
@@ -54,10 +52,10 @@
     <div class="container">
       <form class="needs-validation" novalidate>
         <div class="form-group">
-          <label for="dni">Dni</label>
-          <input id="dni" type="text" class="form-control" placeholder="completa tu dni">
+          <label for="dni">DNI o carnet de extranjería</label>
+          <input id="dni" type="text" class="form-control" placeholder="Digite su número de DNI o carnet de extranjería">
           <div id="documentInvalid" class="invalid-feedback">
-            Por favor digite el número de DNI o carnet de extranjería del visitante correctamente.
+            Por favor digite su número de DNI o carnet de extranjería correctamente.
           </div>
         </div>
         <div class="form-group">
@@ -84,19 +82,9 @@
           <div id="signal">
 
           </div>
-          <!-- <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+          <div id="signalInvalid" class="invalid-feedback">
+            Por favor escoja un tipo de velocidad.
           </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
-          </div>
-
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
-          </div> -->
         </div>
 
         <div class="form-group">
@@ -105,9 +93,6 @@
               <span class="input-group-text">Observaciones</span>
             </div>
             <textarea id="observation" class="form-control" aria-label="With textarea"></textarea>
-            <div id="reasonInvalid" class="invalid-feedback">
-              Por favor escriba una observación.
-            </div>
           </div>
         </div>
         <div class="custom-control custom-checkbox mb-3">
