@@ -41,7 +41,7 @@
     height: 7rem;
     border-radius: 50%;
   }
-  .navbar{
+  .navbar,.footerr{
     background: #1E88E5 ;
   }
   #player, #canvas{
@@ -65,7 +65,9 @@
 }
 
 
-
+.pad{
+  margin: 20px;
+}
 
 
 
