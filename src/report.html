@@ -6,173 +6,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>REPORTEL</title>
+  
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet"> 
+  
   <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"> -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <header>
-    <nav class="nav-extended blue darken-1">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">
-          <img src="img/logo-blanco.png" alt="" class="logo">
+
+
+
+ <div class="viewport">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">Reportel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="view.html">Inicio
+          <span class="sr-only">(current)</span>
         </a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
-        </a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </li>
+      <li class="nav-item">
+        <a id="logOut" class="nav-link" href="#">Reporte</a>
+      </li>
+      <li class="nav-item">
+        <a id="logOut" class="nav-link" href="#">Mapas de reporte</a>
+      </li>
+      <li class="nav-item">
+        <a id="logOut" class="nav-link" href="#">Contactanos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container margin">
+  
+</div>
+<div class="container">
+  <form class="needs-validation" novalidate>
+    <div class="form-group">
+      <label for="name">Dni</label>
+      <input id="dni" type="text" class="form-control" placeholder="completa tu dni">
+      <div id="nameInvalid" class="invalid-feedback">
+        Por favor escriba el nombre del visitante.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="servicio">Servicio</label>
+      <select id="company" class="form-control">
+        <option selected disabled>Empresa comunera</option>
+      </select>
+      <div id="documentInvalid" class="invalid-feedback">
+        Por favor digite el número de DNI o carnet de extranjería del visitante correctamente.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Empresa</label>
+      <select id="company" class="form-control">
+        <option selected disabled>Empresa</option>
+      </select>
+      <div id="companyInvalid" class="invalid-feedback">
+        Por favor escoja la empresa.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Motivo de visita</span>
+        </div>
+        <textarea id="reasonForVisit" class="form-control" aria-label="With textarea"></textarea>
+        <div id="reasonInvalid" class="invalid-feedback">
+          Por favor escriba el motivo de la visita.
+        </div>
+      </div>
+    </div>
+    <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
+      <label class="custom-control-label" for="customControlValidation1">Verifícame</label>
+      <div id="checkboxInvalid" class="invalid-feedback">Debe aceptar antes de enviar.</div>
+    </div>
+    <div class="right">
+      <button id="submit" type="button" class="btn bg-dark">Enviar</button>
+    </div>
+  </form>
+</div>
+</div>
+
+
+
+
+
+
+
+<!-- <footer class="page-footer blue darken-1">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
           <li>
-            <a href="index.html">Inicio</a>
+            <a class="grey-text text-lighten-3" href="#!">Link 1</a>
           </li>
           <li>
-            <a href="#">Reporta</a>
-          </li>
-          <li>
-            <a href="#">JavaScript</a>
+            <a class="grey-text text-lighten-3" href="#!">Link 2</a>
           </li>
         </ul>
       </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-      <li>
-        <a href="index.html">Inicio</a>
-      </li>
-      <li>
-        <a href="report.html">Reporta</a>
-      </li>
-      <li>
-        <a href="collapsible.html">JavaScript</a>
-      </li>
-    </ul>
-  </header>
-
-  <div class="container">
-    <div id="map"></div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <form class="col s6">
-        <div class="row">
-
-          <div class="dni">
-            <div class="input-field col s12">
-              <input id="dni" type="text" class="validate">
-              <label for="dni">DNI</label>
-            </div>
-          </div>
-
-          <div class="service">
-            <div class="input-field col s12">
-              <select id="services">
-                <option value="" disabled selected>Elige una opción</option>
-                <option value="service1">Telefonía fija</option>
-                <option value="service2">Telefonía móvil</option>
-                <option value="service3">Internet fijo</option>
-                <option value="service4">Internet móvil</option>
-                <option value="service5">TV paga</option>
-              </select>
-              <label>Servicio</label>
-            </div>
-          </div>
-
-          <div class="company-service">
-            <div class="col s12" id="companyServiceContainer">
-              <select id="companyService">
-                <!-- <option value="" disabled selected>Elige una opción</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option> -->
-              </select>
-              <label>Empresa</label>
-            </div>
-          </div>
-          <div class="internet-speed col s12">
-            <label>Velocidad</label>
-            <div>
-              <p class="in-line">
-                <label>
-                  <input class="with-gap" name="group3" type="radio" checked />
-                  <span>4G</span>
-                </label>
-              </p>
-              <p class="in-line">
-                <label>
-                  <input class="with-gap" name="group3" type="radio" checked />
-                  <span>3G</span>
-                </label>
-              </p>
-              <p class="in-line">
-                <label>
-                  <input class="with-gap" name="group3" type="radio" checked />
-                  <span>2G</span>
-                </label>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="message">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">mode_edit</i>
-            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-            <label for="icon_prefix2">Inconveniente</label>
-          </div>
-        </div>
-
-        <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
-          <i class="material-icons right">send</i>
-        </button>
-
     </div>
-    </form>
   </div>
-
-
-
-
-
-
-
-  <footer class="page-footer blue darken-1">
+  <div class="footer-copyright">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Footer Content</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li>
-              <a class="grey-text text-lighten-3" href="#!">Link 1</a>
-            </li>
-            <li>
-              <a class="grey-text text-lighten-3" href="#!">Link 2</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      © 2018 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
     </div>
-    <div class="footer-copyright">
-      <div class="container">
-        © 2018 Copyright Text
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-      </div>
-    </div>
-  </footer>
+  </div>
+</footer> -->
 
 
-  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpNI0pTvu5kmRjyNY7pjhAmTueRVI7hE&libraries=places&callback=initMap"
-    async defer></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script> -->
-  <script src="js/firebase.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/report.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpNI0pTvu5kmRjyNY7pjhAmTueRVI7hE&libraries=places&callback=initMap"
+async defer></script>
+
+
+
+<!-- agregado por walter-->
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
+<!-- agregado por walter-->
+
+
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script> -->
+<script src="js/firebase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/report.js"></script>
 </body>
 
 </html>
