@@ -16,8 +16,10 @@
 
 <body>
   <div class="viewport">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="index.html">Reportel</a>
+    <nav class="navbar navbar-expand-lg navbar-light logo">
+      <a class="navbar-brand" href="splash.html">
+        <img src="img/logo-blanco.png" alt="">
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -33,7 +35,7 @@
             <a id="logOut" class="nav-link" href="report.html">Reporte</a>
           </li>
           <li class="nav-item">
-            <a id="logOut" class="nav-link" href="contactanos.html">Contáctanos</a>
+            <a id="logOut" class="nav-link" href="contactus.html">Contáctanos</a>
           </li>
         </ul>
       </div>
@@ -53,7 +55,7 @@
       <form class="needs-validation" novalidate>
         <div class="form-group">
           <label for="dni">DNI o carnet de extranjería</label>
-          <input id="dni" type="text" class="form-control" placeholder="Digite su número de DNI o carnet de extranjería">
+          <input id="dni" type="text" class="form-control" placeholder="DNI o carnet de extranjería">
           <div id="documentInvalid" class="invalid-feedback">
             Por favor digite su número de DNI o carnet de extranjería correctamente.
           </div>
@@ -94,6 +96,15 @@
             <textarea id="observation" class="form-control" aria-label="With textarea"></textarea>
           </div>
         </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" class="form-control" placeholder="Correo electrónico">
+          <div id="emailInvalid" class="invalid-feedback">
+            Por favor llenar su correo electrónico correctamente.
+          </div>
+        </div>
+
         <div class="custom-control custom-checkbox mb-3">
           <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
           <label class="custom-control-label" for="customControlValidation1">Verifícame</label>
@@ -141,7 +152,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
-
+  <script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
   <script src="js/firebase.js"></script>
   <script src="js/data.js"></script>
   <script src="js/report.js"></script>

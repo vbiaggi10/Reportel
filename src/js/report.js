@@ -1,6 +1,3 @@
-// $(document).ready(() => {
-//   $('select').formSelect();
-// });
 let map;
 const getUserId = document.querySelector('#dni');
 const getServices = document.querySelector('#service');
@@ -10,13 +7,13 @@ const getSignal = document.querySelector('#signal');
 const submit = document.querySelector('#submit');
 const getObservation = document.querySelector('#observation');
 const radioButton = document.getElementsByName('customRadio');
-const dni = document.querySelector('#dni');
 const documentInvalid = document.querySelector('#documentInvalid');
-const service = document.querySelector('#service');
 const serviceInvalid = document.querySelector('#serviceInvalid');
 const company = document.querySelector('#companyService');
 const companyInvalid = document.querySelector('#companyInvalid');
 const signalInvalid = document.querySelector('#signalInvalid');
+const getEmail = document.querySelector('#email');
+const emailInvalid = document.querySelector('#emailInvalid');
 const checkbox = document.querySelector('#customControlValidation1');
 const checkboxInvalid = document.querySelector('#checkboxInvalid');
 
@@ -75,6 +72,7 @@ firebase.database().ref('/signal/').on('value', snapshot => {
     getSignal.innerHTML = '';
     if (getServices.value === '-LKe30srkZEH4drbijm7') {
       signalContainer.style.display = 'block';
+      signalContainer.setAttribute('display', 'block')
       snapshot.forEach(element => {
         getSignal.innerHTML += `
         <div class="form-check">
@@ -85,6 +83,7 @@ firebase.database().ref('/signal/').on('value', snapshot => {
 
     } else {
       signalContainer.style.display = 'none';
+      signalContainer.setAttribute('display', 'none')
     }
   })
 })
@@ -109,20 +108,20 @@ initMap = () => {
     validateReport(latitude, longitude)
   });
 }
-
 const submitReport = (latitude, longitude) => {
-  if (getSignal.style.display === 'none') {
-    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, '', getObservation.value, latitude, longitude)
+  if (signalContainer.getAttribute('display') === 'none') {
+    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, ' ', getObservation.value, latitude, longitude, getEmail.value)
   } else {
-    for (const i in radioButton) {
-      if (radioButton[i].checked) {
-        writeNewReport(getUserId.value, getServices.value, getCompanyService.value, radioButton[i].getAttribute('id'), getObservation.value, latitude, longitude)
+    radioButton.forEach(btn => {
+      if (btn.checked) {
+        writeNewReport(getUserId.value, getServices.value, getCompanyService.value, btn.getAttribute('id'), getObservation.value, latitude, longitude, getEmail.value)
       }
-    }
+    })
   }
+  sendMail(getEmail.value, getUserId.value)
   setTimeout(() => {
     window.location.href = 'successful.html';
-  }, 1000)
+  }, 2000)
 }
 
 const createMarker = (pyrmont) => {
@@ -135,65 +134,104 @@ const createMarker = (pyrmont) => {
 
 const validateReport = (latitude, longitude) => {
   submit.addEventListener('click', () => {
-    const selectedService = service.options[service.selectedIndex].text;
+    const selectedService = getServices.options[getServices.selectedIndex].text;
     const selectedCompany = company.options[company.selectedIndex].text;
 
-    for (const i in radioButton) {
-      if (!!dni.value && !!selectedService && !!selectedCompany && radioButton[i].checked && checkbox.checked) {
-        submitReport(latitude, longitude)
+    if (!!getUserId.value && !!selectedService && !!selectedCompany && checkbox.checked && !!getEmail.value) {
+      submitReport(latitude, longitude)
+    } else {
+      if (!getUserId.value || !/^([0-9]{8,9})*$/.test(getUserId.value)) {
+        documentInvalid.style.display = 'block';
+      } else if (!!getUserId.value && /^([0-9]{8,9})*$/.test(getUserId.value)) {
+        documentInvalid.style.display = 'none';
+      }
+
+      if (selectedService === 'Elija una opción') {
+        serviceInvalid.style.display = 'block';
       } else {
-        if (!dni.value || !/^([0-9]{8,9})*$/.test(dni.value)) {
-          documentInvalid.style.display = 'block';
-        } else if (!!dni.value && /^([0-9]{8,9})*$/.test(dni.value)) {
-          documentInvalid.style.display = 'none';
-        }
+        serviceInvalid.style.display = 'none';
+      }
 
-        if (selectedService === 'Elija una opción') {
-          serviceInvalid.style.display = 'block';
-        } else {
-          serviceInvalid.style.display = 'none';
-        }
-
-        if (selectedCompany === 'Elija una opción') {
-          companyInvalid.style.display = 'block';
-        } else {
-          companyInvalid.style.display = 'none';
-        }
-
+      if (selectedCompany === 'Elija una opción') {
+        companyInvalid.style.display = 'block';
+      } else {
+        companyInvalid.style.display = 'none';
+      }
+      /* for (const i in radioButton) {
         if (radioButton[i].checked) {
           signalInvalid.style.display = 'none';
         } else {
           signalInvalid.style.display = 'block';
         }
+      } */
 
-        if (checkbox.checked === false) {
-          checkboxInvalid.style.display = 'block';
-        }
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
+        emailInvalid.style.display = 'block';
+      } else if (!!getEmail.value && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
+        emailInvalid.style.display = 'none';
       }
+
+      if (checkbox.checked === false) {
+        checkboxInvalid.style.display = 'block';
+      }
+
     }
 
-    checkbox.addEventListener('click', () => {
-      if (checkbox.checked == true) {
-        checkboxInvalid.style.display = "none";
-      }
-    });
-
-    dni.addEventListener('keyup', () => {
-      documentInvalid.style.display = "none";
-    });
-
-    service.addEventListener('change', () => {
-      serviceInvalid.style.display = "none";
-    });
-
-    company.addEventListener('change', () => {
-      companyInvalid.style.display = "none";
-    });
-    for (const i in radioButton) {
-      radioButton[i].addEventListener('click', () => {
-        signalInvalid.style.display = "none";
-      });
-    }
   })
 
+}
+
+checkbox.addEventListener('click', () => {
+  if (checkbox.checked == true) {
+    checkboxInvalid.style.display = "none";
+  }
+});
+
+
+getUserId.addEventListener('keyup', () => {
+  documentInvalid.style.display = "none";
+});
+
+getEmail.addEventListener('keyup', () => {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
+    emailInvalid.style.display = 'none';
+  }
+});
+
+getServices.addEventListener('change', () => {
+  serviceInvalid.style.display = "none";
+});
+
+company.addEventListener('change', () => {
+  companyInvalid.style.display = "none";
+});
+
+/* radioButton.forEach(btn => {
+  btn.addEventListener('click', () => {
+    signalInvalid.style.display = "none";
+  })
+
+}) */
+
+const sendMail = (email, dni) => {
+  $.ajax({
+    type: 'POST',
+    url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+    data: {
+      'key': 'ZGiSDAUGJIgaCMIqm9ysPA',
+      'message': {
+        'from_email': 'vbiaggi10@laboratoria.la',
+        'to': [{
+          'email': email,
+          'name': dni,
+          'type': 'to'
+        }],
+        'autotext': 'true',
+        'subject': '¡TU REPORTE SE REGISTRO CON EXITO!',
+        'html': 'Tu reporte ha sido registrado en nuestra base de datos y te mantendremos al tanto de la solucion'
+      }
+    }
+  }).done(function (response) {
+    console.log(response); // if you're into that sorta thing
+  });
 }

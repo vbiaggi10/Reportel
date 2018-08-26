@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>REPORTEL</title>
+  <title>ReporTel</title>
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,8 +18,10 @@
 
 <body>
   <div class="viewport">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">Reportel</a>
+    <nav class="navbar navbar-expand-lg navbar-light logo">
+      <a class="navbar-brand" href="splash.html">
+        <img src="img/logo-blanco.png" alt="">
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,7 +37,7 @@
             <a id="logOut" class="nav-link" href="report.html">Reporte</a>
           </li>
           <li class="nav-item active">
-            <a id="logOut" class="nav-link" href="contactanos.html">Contáctanos</a>
+            <a id="logOut" class="nav-link" href="contactus.html">Contáctanos</a>
           </li>
         </ul>
       </div>
@@ -47,28 +49,26 @@
       </nav>
     </div>
 
-
-
     <div class="container">
       <form class="needs-validation" novalidate>
         <div class="form-group">
-          <label for="dni">Dni</label>
-          <input id="dni" type="text" class="form-control" placeholder="completa tu dni">
+          <label for="dni">DNI o carnet de extranjería</label>
+          <input id="dni" type="text" class="form-control" placeholder="DNI o carnet de extranjería">
           <div id="documentInvalid" class="invalid-feedback">
-            Por favor digite el número de DNI.
+            Por favor digite su número de DNI o carnet de extranjería correctamente.
           </div>
         </div>
 
         <div class="form-group">
           <label for="email">E-mail</label>
-          <input id="email" type="email" class="form-control" placeholder="completa tu correo">
-          <div id="documentInvalid" class="invalid-feedback">
-            Por favor no olvidarse de llenar su correo correctamente.
+          <input id="email" type="email" class="form-control" placeholder="Correo electrónico">
+          <div id="emailInvalid" class="invalid-feedback">
+            Por favor llenar su correo electrónico correctamente.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="service">Sobre que es su duda :</label>
+          <label for="service">¿Sobre qué es su duda?</label>
           <select id="service" class="form-control" required>
             <option selected disabled>Elija una opción</option>
           </select>
@@ -76,8 +76,6 @@
             Por favor escoja alguna alternativa
           </div>
         </div>
-
-
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -85,7 +83,7 @@
             </div>
             <textarea id="observation" class="form-control" aria-label="With textarea"></textarea>
             <div id="reasonInvalid" class="invalid-feedback">
-              Por favor escriba una observación.
+              Por favor llene este campo.
             </div>
           </div>
         </div>
@@ -125,12 +123,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpNI0pTvu5kmRjyNY7pjhAmTueRVI7hE&libraries=places&callback=initMap"
-    async defer></script>
 
-
-
-  <!-- agregado por walter-->
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -139,16 +132,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
-  <!-- agregado por walter-->
+  
   <script src="js/firebase.js"></script>
   <script src="js/data.js"></script>
-
-
-  <!--agregado por walter-->
-  <script src="js/validar.js"></script>
-
-
-
+  <script src="js/contactus.js"></script>
 
 </body>
 

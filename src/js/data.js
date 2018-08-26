@@ -1,4 +1,4 @@
-window.writeNewReport = (user_id, id_service, id_operator, id_signal_type, observation, latitude, longitude) => {
+window.writeNewReport = (user_id, id_service, id_operator, id_signal_type, observation, latitude, longitude, email) => {
   // A post entry.
   var reportData = {
     user_id: user_id,
@@ -7,7 +7,9 @@ window.writeNewReport = (user_id, id_service, id_operator, id_signal_type, obser
     id_signal_type: id_signal_type,
     observation: observation,
     latitude: latitude,
-    longitude: longitude
+    longitude: longitude,
+    date: new Date().toString("yyyy-MM-dd"),
+    email: email
   };
 
   // Get a key for a new Post.
@@ -21,13 +23,11 @@ window.writeNewReport = (user_id, id_service, id_operator, id_signal_type, obser
   return firebase.database().ref().update(updates);
 }
 
-
-window.writeNewContact = (user_id, email, celular, id_service, observation) => {
+window.writeNewContact = (user_id, email, id_service, observation) => {
   // A post entry.
   var reportDataC = {
     user_id: user_id,
     email: email,
-    celular: celular,
     id_service: id_service,
     observation: observation
   };

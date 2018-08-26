@@ -30,8 +30,8 @@
     padding: .60rem 1rem;
     margin: 0;
   }
-  .logo {
-    height: 4rem;
+  .logo a img{
+    height: 2rem;
   }
   .in-line {
     display: inline-block;
@@ -62,9 +62,12 @@
   }
   .buttons-container {
     display: none;
+    text-align: center;
+    margin-top: 1rem;
   }
   .legend-container {
     display: none;
+    right: 0;
     position: absolute;
     z-index: 1;
     background: #fff;
@@ -74,6 +77,9 @@
   .legend-container .legend{
     padding: 2rem 1rem;
 
+  }
+  .button-legend{
+    text-align: right;
   }
   .button-filter #showButtons,
   .button-filter #showLegend {
@@ -96,7 +102,7 @@
   }
   .legend img {
     width: 100%;
-    height: 300px;
+    height: 350px;
   }
   #signalContainer {
     display: none;
@@ -107,17 +113,20 @@
 }
 
 @media only screen and (min-width: 758px) {
+  .logo a img{
+    height: 3rem;
+  }
   .container-button {
     display: flex;
   }
-  .button-filter {
+  /* .button-filter {
     height: 54px;
   }
   .button-filter button {
     width: 136px;
     padding: 0.84rem 2.14rem;
     font-size: .81rem;
-  }
+  } */
 }
 
 @media only screen and (min-width: 960px) {

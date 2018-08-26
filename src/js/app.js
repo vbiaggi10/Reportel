@@ -59,25 +59,94 @@ const paintMarker = () => {
     })
   })
 }
+let service = '';
+let operator = '';
 
-const createMarker = (observation, position, ico) => {
+const createMarker = (info, position, ico) => {
+  // console.log(validateOperator(info))
+  var contentString = `
+  <div id="content">
+    <h5 id="firstHeading" class="firstHeading">${validateService(info)}</h5>
+    <h6 id="secondHeading" class="firstHeading">${validateOperator(info)}</h6>
+    <div id="bodyContent">
+      <p>${info.observation}</p>
+      <p>${info.date}</p>
+    </div>
+  </div>`;
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
   let marker = new google.maps.Marker({
     map: map,
     icon: ico,
     position: position,
-    animation: google.maps.Animation.BOUNCE,
-    title: observation
+    animation: google.maps.Animation.BOUNCE
   });
   markers.push(marker);
+
+
+  marker.addListener('click', function () {
+    infowindow.open(map, marker);
+  });
+}
+
+const validateService = (info) => {
+  if ('-LKe38j7cBa00iEZe41u' === info.id_service) {
+    //telf movil  
+    service = 'Telefonía móvil'
+    return service;
+  } else if ('-LKe37KN7Nh8C77wnvkD' === info.id_service) {
+    //telf fijo
+    service = 'Telefonía fijo'
+    return service;
+  } else if ('-LKe33kSAYcRFP3u_NZt' === info.id_service) {
+    //tv paga
+    service = 'Tv paga'
+    return service;
+  } else if ('-LKe30srkZEH4drbijm7' === info.id_service) {
+    //inter movil
+    service = 'Internet móvil'
+    return service;
+  } else if ('-LKe2uS-Go3sI_lQ2tZI' === info.id_service) {
+    //inter fijo
+    service = 'Internet fijo'
+    return service;
+  }
+}
+
+const validateOperator = (info) => {
+  if ('-LKe3Se1I-QAR7-4oTga' === info.id_operator) {
+    operator = 'Claro'
+    return operator;
+  } else if ('-LKe3VxBId5kCsk5gf-9' === info.id_operator) {
+    operator = 'Movistar'
+    return operator;
+  } else if ('-LKe3Xrp0nw1D4fhxQry' === info.id_operator) {
+    operator = 'Entel'
+    return operator;
+  } else if ('-LKe3ZChA0ImL4nAHGwB' === info.id_operator) {
+    operator = 'Bitel'
+    return operator;
+  } else if ('-LKe3_YJI8hscD7yT6Ja' === info.id_operator) {
+    operator = 'Olo'
+    return operator;
+  } else if ('-LKe3cJvIH1sYk_XKoyF' === info.id_operator) {
+    operator = 'Tuento'
+    return operator;
+  } else if ('-LKe3iSFo_iSTsW-rJua' === info.id_operator) {
+    operator = 'Direct TV'
+    return operator;
+  }
 }
 
 const filterSignal = (element, position) => {
   if (element.val().id_signal_type === '') {
     const src = 'img/markers/' + element.val().id_operator + '/' + element.val().id_service + '.png';
-    createMarker(element.val().observation, position, src)
+    createMarker(element.val(), position, src)
   } else {
     const src = 'img/markers/' + element.val().id_operator + '/' + element.val().id_service + element.val().id_signal_type + '.png';
-    createMarker(element.val().observation, position, src)
+    createMarker(element.val(), position, src)
   }
 }
 
