@@ -9,10 +9,10 @@
   }
   .viewport {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
   }
-  .father-container{
-    margin-top: 2rem; 
+  .father-container {
+    margin-top: 2rem;
   }
   .margin {
     margin: 2rem auto;
@@ -56,38 +56,75 @@
   .btn-padding {
     padding: .54rem 1.14rem;
   }
-  .button-filter{
-    height: 54px;
+  .button-filter {
+    height: auto;
+    margin-bottom: 0.84rem;
   }
-  .button-filter button{
-    width: 136px;
+  .buttons-container {
+    display: none;
+  }
+  .legend-container {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    margin-top: 0.8rem;
+    padding: 0;
+  }
+  .legend-container .legend{
+    padding: 2rem 1rem;
+
+  }
+  .button-filter #showButtons,
+  .button-filter #showLegend {
+    width: 100%;
+    font-size: .75rem;
+    padding: 0.2rem;
+  }
+  .button-filter button {
+    width: 69px;
+    padding: 0.37rem;
+    margin: 0;
+    font-size: .65rem;
   }
   #map {
     width: 100%;
     height: 400px;
   }
-  .container-button{
+  .container-button {
     display: block;
   }
-  .legend img{
+  .legend img {
     width: 100%;
+    height: 300px;
   }
-  #signalContainer{
+  #signalContainer {
     display: none;
+  }
+  footer {
+    margin-top: 3rem;
   }
 }
 
 @media only screen and (min-width: 758px) {
-  .container-button{
+  .container-button {
     display: flex;
   }
-}
-@media only screen and (min-width: 960px) {
-  .button-filter{
-    height: auto;
+  .button-filter {
+    height: 54px;
+  }
+  .button-filter button {
+    width: 136px;
+    padding: 0.84rem 2.14rem;
+    font-size: .81rem;
   }
 }
 
+@media only screen and (min-width: 960px) {
+  .button-filter {
+    height: auto;
+  }
+}
 
 .pad {
   margin: 20px;

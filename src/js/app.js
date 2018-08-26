@@ -2,11 +2,37 @@ let map;
 let infowindow;
 let markers = [];
 
+const showButtons = document.querySelector('#showButtons');
+const buttonsContainer = document.querySelector('.buttons-container');
+const showLegend = document.querySelector('#showLegend');
+const legendContainer = document.querySelector('.legend-container');
 const filterTelephony = document.querySelector('#filterTelephony');
 const filterInternet = document.querySelector('#filterInternet');
 const filterTvPaga = document.querySelector('#filterTvPaga');
 const noFilter = document.querySelector('#noFilter');
 const dbReport = firebase.database().ref('/report/');
+let countClickButtom = 0;
+let countClickLegend = 0;
+
+
+showButtons.addEventListener('click', () => {
+  if (countClickButtom === 0) {
+    buttonsContainer.style.display = 'block';
+    countClickButtom = 1;
+  } else {
+    buttonsContainer.style.display = 'none';
+    countClickButtom = 0;
+  }
+})
+showLegend.addEventListener('click', () => {
+  if (countClickLegend === 0) {
+    legendContainer.style.display = 'block';
+    countClickLegend = 1;
+  } else {
+    legendContainer.style.display = 'none';
+    countClickLegend = 0;
+  }
+})
 
 initMap = () => {
   navigator.geolocation.getCurrentPosition(function (pos) {
@@ -29,7 +55,7 @@ const paintMarker = () => {
   dbReport.on('value', snapshot => {
     snapshot.forEach(element => {
       const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
-      filterSignal(element, position) 
+      filterSignal(element, position)
     })
   })
 }
@@ -67,9 +93,9 @@ filterTelephony.addEventListener('click', () => {
     snapshot.forEach(element => {
       const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
       if (element.val().id_service === '-LKe38j7cBa00iEZe41u') {
-        filterSignal(element, position) 
+        filterSignal(element, position)
       } else if (element.val().id_service === '-LKe37KN7Nh8C77wnvkD') {
-        filterSignal(element, position) 
+        filterSignal(element, position)
       }
     })
   })
@@ -82,14 +108,14 @@ filterInternet.addEventListener('click', () => {
       const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
       if (element.val().id_service === '-LKe30srkZEH4drbijm7') {
         if (element.val().id_signal_type === '-LKjlc5yO8S2hu2kP05N') {
-          filterSignal(element, position) 
+          filterSignal(element, position)
         } else if (element.val().id_signal_type === '-LKjldEcN2gNkuV7h-As') {
-          filterSignal(element, position) 
+          filterSignal(element, position)
         } else if (element.val().id_signal_type === '-LKjlg7lXM71XNmj0X_5') {
-          filterSignal(element, position) 
+          filterSignal(element, position)
         }
       } else if (element.val().id_service === '-LKe2uS-Go3sI_lQ2tZI') {
-        filterSignal(element, position) 
+        filterSignal(element, position)
       }
     })
   })
@@ -101,7 +127,7 @@ filterTvPaga.addEventListener('click', () => {
     snapshot.forEach(element => {
       const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
       if (element.val().id_service === '-LKe33kSAYcRFP3u_NZt') {
-        filterSignal(element, position) 
+        filterSignal(element, position)
       }
     })
   })

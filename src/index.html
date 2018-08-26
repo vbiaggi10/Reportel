@@ -43,10 +43,22 @@
     <div class="father-container">
       <div class="container-button">
         <div class="button-filter col-xl-2 col-lg-2 col-md-12">
-          <button type="button" class="btn btn-info" id="filterTelephony">Telefonia</button>
-          <button type="button" class="btn btn-info" id="filterInternet">Internet</button>
-          <button type="button" class="btn btn-info" id="filterTvPaga">Tv paga</button>
-          <button type="button" class="btn btn-info" id="noFilter">General</button>
+          <button type="button" id="showButtons" class="btn btn-outline-info">Filtra por</button>
+          <div class="buttons-container">
+            <button type="button" class="btn btn-info" id="filterTelephony">Telefonia</button>
+            <button type="button" class="btn btn-info" id="filterInternet">Internet</button>
+            <button type="button" class="btn btn-info" id="filterTvPaga">Tv paga</button>
+            <button type="button" class="btn btn-info" id="noFilter">General</button>
+          </div>
+        </div>
+
+        <div class="button-filter col-xl-2 col-lg-2 col-md-12">
+          <button type="button" id="showLegend" class="btn btn-outline-info">Leyenda</button>
+          <div class="legend-container">
+            <div class="legend col-xl-2 col-lg-2 col-md-3">
+              <img src="img/legend.png" alt="">
+            </div>
+          </div>
         </div>
 
         <div class="container col-xl-8 col-lg-8 col-md-7 map-container">
@@ -54,40 +66,34 @@
           </div>
         </div>
 
-        <div class="legend col-xl-2 col-lg-2 col-md-3">
+        <!-- <div class="legend col-xl-2 col-lg-2 col-md-3">
           <img src="img/legend.png" alt="">
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 
   <footer class="page-footer blue darken-1">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">ReporTel 2018</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li>
-            <a class="grey-text text-lighten-3" href="#!">Link 1</a>
-          </li>
-          <li>
-            <a class="grey-text text-lighten-3" href="#!">Link 2</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
     <div class="container">
-      © 2018 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ubícanos en nuestras redes sociales</h5>
+          <ul>
+              <li>
+                <a class="white-text text-lighten-3" href="#!">ReporTel@gmail.com</a>
+              </li>
+              <li>
+                <a class="white-text text-lighten-3" href="#!">Facebook:ReporTel</a>
+              </li>
+            </ul> 
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">ReporTel 2018</h5>
+          <p class="white-text text-lighten-4">Todos los derechos reservados.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
