@@ -143,7 +143,7 @@ const validateReport = (latitude, longitude) => {
     const selectedService = getServices.options[getServices.selectedIndex].text;
     const selectedCompany = company.options[company.selectedIndex].text;
 
-    if (!!getUserId.value && !!selectedService && !!selectedCompany && checkbox.checked) {
+    if (!!getUserId.value && !!selectedService && !!selectedCompany && checkbox.checked && !!getEmail.value) {
       submitReport(latitude, longitude)
     } else {
       if (!getUserId.value || !/^([0-9]{8,9})*$/.test(getUserId.value)) {
