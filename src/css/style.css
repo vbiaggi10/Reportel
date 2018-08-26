@@ -107,8 +107,14 @@
   #signalContainer {
     display: none;
   }
+  #displayInternetFijo {
+    display: none;
+  }
   footer {
     margin-top: 3rem;
+  }
+  .feedback{
+    font-size: 0.8rem;
   }
 }
 

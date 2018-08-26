@@ -55,6 +55,7 @@ const paintMarker = () => {
   dbReport.on('value', snapshot => {
     snapshot.forEach(element => {
       const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
+      // console.log(element.val())
       filterSignal(element, position)
     })
   })
@@ -141,11 +142,12 @@ const validateOperator = (info) => {
 }
 
 const filterSignal = (element, position) => {
-  if (element.val().id_signal_type === '') {
-    const src = 'img/markers/' + element.val().id_operator + '/' + element.val().id_service + '.png';
+  if (element.val().id_signal_type === '' || element.val().id_signal_type === ' ') {
+    const src = `img/markers/${element.val().id_operator}/${element.val().id_service}.png`;
     createMarker(element.val(), position, src)
   } else {
-    const src = 'img/markers/' + element.val().id_operator + '/' + element.val().id_service + element.val().id_signal_type + '.png';
+    const src = `img/markers/${element.val().id_operator}/${element.val().id_service+element.val().id_signal_type}.png`;
+    console.log(src)
     createMarker(element.val(), position, src)
   }
 }

@@ -16,6 +16,7 @@ const getEmail = document.querySelector('#email');
 const emailInvalid = document.querySelector('#emailInvalid');
 const checkbox = document.querySelector('#customControlValidation1');
 const checkboxInvalid = document.querySelector('#checkboxInvalid');
+const displayInternetFijo = document.querySelector('#displayInternetFijo')
 
 firebase.database().ref('/service/').on('value', snapshot => {
   snapshot.forEach(element => {
@@ -71,6 +72,7 @@ firebase.database().ref('/signal/').on('value', snapshot => {
   getServices.addEventListener('change', () => {
     getSignal.innerHTML = '';
     if (getServices.value === '-LKe30srkZEH4drbijm7') {
+      displayInternetFijo.style.display = 'none';
       signalContainer.style.display = 'block';
       signalContainer.setAttribute('display', 'block')
       snapshot.forEach(element => {
@@ -81,7 +83,10 @@ firebase.database().ref('/signal/').on('value', snapshot => {
         </div>`;
       });
 
+    } else if (getServices.value === '-LKe2uS-Go3sI_lQ2tZI') {
+      displayInternetFijo.style.display = 'block';
     } else {
+      displayInternetFijo.style.display = 'none';
       signalContainer.style.display = 'none';
       signalContainer.setAttribute('display', 'none')
     }
@@ -104,13 +109,14 @@ initMap = () => {
 
     infowindow = new google.maps.InfoWindow();
 
+    
     createMarker(pyrmont)
     validateReport(latitude, longitude)
   });
 }
 const submitReport = (latitude, longitude) => {
   if (signalContainer.getAttribute('display') === 'none') {
-    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, ' ', getObservation.value, latitude, longitude, getEmail.value)
+    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, '', getObservation.value, latitude, longitude, getEmail.value)
   } else {
     radioButton.forEach(btn => {
       if (btn.checked) {
@@ -137,7 +143,7 @@ const validateReport = (latitude, longitude) => {
     const selectedService = getServices.options[getServices.selectedIndex].text;
     const selectedCompany = company.options[company.selectedIndex].text;
 
-    if (!!getUserId.value && !!selectedService && !!selectedCompany && checkbox.checked && !!getEmail.value) {
+    if (!!getUserId.value && !!selectedService && !!selectedCompany && checkbox.checked) {
       submitReport(latitude, longitude)
     } else {
       if (!getUserId.value || !/^([0-9]{8,9})*$/.test(getUserId.value)) {
@@ -165,11 +171,11 @@ const validateReport = (latitude, longitude) => {
         }
       } */
 
-      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
+      /* if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
         emailInvalid.style.display = 'block';
       } else if (!!getEmail.value && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
         emailInvalid.style.display = 'none';
-      }
+      } */
 
       if (checkbox.checked === false) {
         checkboxInvalid.style.display = 'block';
@@ -193,8 +199,10 @@ getUserId.addEventListener('keyup', () => {
 });
 
 getEmail.addEventListener('keyup', () => {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value)) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value) || getEmail.value === '') {
     emailInvalid.style.display = 'none';
+  } else{
+    emailInvalid.style.display = 'block'
   }
 });
 
@@ -228,7 +236,7 @@ const sendMail = (email, dni) => {
         }],
         'autotext': 'true',
         'subject': '¡TU REPORTE SE REGISTRO CON EXITO!',
-        'html': 'Tu reporte ha sido registrado en nuestra base de datos y te mantendremos al tanto de la solucion'
+        'html': `!Tu reporte ha sido registrado con éxito, te mantendremos al tanto de su solución! \n !Muchas gracias por usar ReporTel, con tu ayuda mejoraremos las telecomunicaciones en el Perú!`
       }
     }
   }).done(function (response) {
