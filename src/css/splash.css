@@ -1,8 +1,8 @@
 @media only screen and (min-width: 320px) {
   body {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
   }
   .start,
   body {
@@ -16,47 +16,31 @@
   .title--bold {
     font-weight: bold;
   }
-  .splashScreen {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-	align-items: center;
-	/* display: block; */
+  .splash-container {
+    margin: 8rem auto;
   }
-  .dots-contianer {
-    width: 100vw;
+  .dots-container {
+    width: 100%;
     /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 5rem auto;
   }
   .dots {
     text-align: center;
   }
   .dot {
     display: inline-block;
-    width: 54px;
-    height: 54px;
+    width: 42px;
+    height: 42px;
   }
   .dot img {
-    width: 54px;
-    height: 54px;
-  }
-  .dot-orange {
-    background-color: orange;
-  }
-  .dot-blue {
-    background-color: blue;
-  }
-  .dot-yellow {
-    background-color: gold;
-  }
-  .dot-green {
-    background-color: green;
+    width: 42px;
+    height: 42px;
   }
   .dot {
-    margin: 0 10px;
+    margin: 0 6px;
     -webkit-animation: bounce-up-down 1.6s infinite ease-in-out;
   }
   .dot-2 {
@@ -69,11 +53,21 @@
     -webkit-animation-delay: .9s
   }
   .logo {
-    height: 5rem;
+    height: 2rem;
+  }
+  .center {
+    text-align: center;
+  }
+  .center p {
+    font-size: 1rem;
+    font-weight: 900;
   }
 }
 
 @media only screen and (min-width: 480px) {
+  .splash-container {
+    margin: 10rem auto;
+  }
   .dot {
     width: 64px;
     height: 64px;
@@ -81,6 +75,16 @@
   .dot img {
     width: 64px;
     height: 64px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .logo {
+    height: 5rem;
+  }
+  .center p {
+    font-size: 2rem;
+    font-weight: 900;
   }
 }
 

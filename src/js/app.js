@@ -1,9 +1,12 @@
 let map;
 let infowindow;
+let markers = [];
 
 const filterTelephony = document.querySelector('#filterTelephony');
 const filterInternet = document.querySelector('#filterInternet');
 const filterTvPaga = document.querySelector('#filterTvPaga');
+const noFilter = document.querySelector('#noFilter');
+const dbReport = firebase.database().ref('/report/');
 
 initMap = () => {
   navigator.geolocation.getCurrentPosition(function (pos) {
@@ -18,58 +21,93 @@ initMap = () => {
       zoom: 14.5,
       mapTypeId: google.maps.MapTypeId.roadmap
     });
-
+    paintMarker();
   });
 }
 
-firebase.database().ref('/report/').on('value', snapshot => {
-  snapshot.forEach(element => {
-    // console.log(element.val())
-    const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
-    if (element.val().id_service === '-LKe2uS-Go3sI_lQ2tZI') {
-      createMarker(position, 'img/markers/internetfijo.png')
-    } else if (element.val().id_service === '-LKe30srkZEH4drbijm7') {
-      if (element.val().id_signal_type === '-LKjlc5yO8S2hu2kP05N') {
-        createMarker(position, 'img/markers/internetmovil2g.png')
-      } else if (element.val().id_signal_type === '-LKjldEcN2gNkuV7h-As') {
-        createMarker(position, 'img/markers/internetmovil3g.png')
-      } else if (element.val().id_signal_type === '-LKjlg7lXM71XNmj0X_5') {
-        createMarker(position, 'img/markers/internetmovil4g.png')
-      }
-    } else if (element.val().id_service === '-LKe33kSAYcRFP3u_NZt') {
-      createMarker(position, 'img/markers/tvpaga.png')
-    } else if (element.val().id_service === '-LKe37KN7Nh8C77wnvkD') {
-      createMarker(position, 'img/markers/telefoniafija.png')
-    } else if (element.val().id_service === '-LKe38j7cBa00iEZe41u') {
-      createMarker(position, 'img/markers/telefoniamovil.png')
-    }
-  });
-})
+const paintMarker = () => {
+  dbReport.on('value', snapshot => {
+    snapshot.forEach(element => {
+      const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
+      filterSignal(element, position) 
+    })
+  })
+}
 
-const createMarker = (position, ico) => {
-  new google.maps.Marker({
+const createMarker = (observation, position, ico) => {
+  let marker = new google.maps.Marker({
     map: map,
     icon: ico,
-    position: position
+    position: position,
+    animation: google.maps.Animation.BOUNCE,
+    title: observation
   });
+  markers.push(marker);
+}
+
+const filterSignal = (element, position) => {
+  if (element.val().id_signal_type === '') {
+    const src = 'img/markers/' + element.val().id_operator + '/' + element.val().id_service + '.png';
+    createMarker(element.val().observation, position, src)
+  } else {
+    const src = 'img/markers/' + element.val().id_operator + '/' + element.val().id_service + element.val().id_signal_type + '.png';
+    createMarker(element.val().observation, position, src)
+  }
+}
+
+const deleteMarker = () => {
+  for (removingMarkers in markers) {
+    markers[removingMarkers].setMap(null);
+  }
 }
 
 filterTelephony.addEventListener('click', () => {
+  deleteMarker();
+  dbReport.on('value', snapshot => {
+    snapshot.forEach(element => {
+      const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
+      if (element.val().id_service === '-LKe38j7cBa00iEZe41u') {
+        filterSignal(element, position) 
+      } else if (element.val().id_service === '-LKe37KN7Nh8C77wnvkD') {
+        filterSignal(element, position) 
+      }
+    })
+  })
+});
 
-  let placesSearched = places.filter(filterPlaces);
-})
 filterInternet.addEventListener('click', () => {
-
+  deleteMarker();
+  dbReport.on('value', snapshot => {
+    snapshot.forEach(element => {
+      const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
+      if (element.val().id_service === '-LKe30srkZEH4drbijm7') {
+        if (element.val().id_signal_type === '-LKjlc5yO8S2hu2kP05N') {
+          filterSignal(element, position) 
+        } else if (element.val().id_signal_type === '-LKjldEcN2gNkuV7h-As') {
+          filterSignal(element, position) 
+        } else if (element.val().id_signal_type === '-LKjlg7lXM71XNmj0X_5') {
+          filterSignal(element, position) 
+        }
+      } else if (element.val().id_service === '-LKe2uS-Go3sI_lQ2tZI') {
+        filterSignal(element, position) 
+      }
+    })
+  })
 })
+
 filterTvPaga.addEventListener('click', () => {
-
+  deleteMarker();
+  dbReport.on('value', snapshot => {
+    snapshot.forEach(element => {
+      const position = new google.maps.LatLng(element.val().latitude, element.val().longitude);
+      if (element.val().id_service === '-LKe33kSAYcRFP3u_NZt') {
+        filterSignal(element, position) 
+      }
+    })
+  })
 })
 
-firebase.database().ref('/report/').on('value', snapshot => {
-  snapshot.forEach(element => {
-    // console.log(element.val())
-    function filterPlaces(places) {
-      return places === element.val().id_service;
-    }
-  });
+noFilter.addEventListener('click', () => {
+  deleteMarker();
+  paintMarker();
 })
