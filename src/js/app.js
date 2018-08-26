@@ -133,7 +133,7 @@ const validateOperator = (info) => {
     operator = 'Olo'
     return operator;
   } else if ('-LKe3cJvIH1sYk_XKoyF' === info.id_operator) {
-    operator = 'Tuento'
+    operator = 'Tuenti'
     return operator;
   } else if ('-LKe3iSFo_iSTsW-rJua' === info.id_operator) {
     operator = 'Direct TV'

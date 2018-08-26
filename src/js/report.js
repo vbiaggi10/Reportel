@@ -108,15 +108,25 @@ initMap = () => {
     });
 
     infowindow = new google.maps.InfoWindow();
+    const marker = new google.maps.Marker({
+      map: map,
+      position: pyrmont,
+    });
 
-    
-    createMarker(pyrmont)
-    validateReport(latitude, longitude)
+    google.maps.event.addListener(map, 'click', function (event) {
+      var lat = event.latLng.lat()
+      var lng = event.latLng.lng();
+      const newPyrmont = new google.maps.LatLng(lat, lng);
+      marker.setPosition(newPyrmont)
+      // createMarker(newPyrmont)
+      validateReport(marker.position.lat(), marker.position.lng())
+    });
+    // createMarker(pyrmont)
   });
 }
 const submitReport = (latitude, longitude) => {
   if (signalContainer.getAttribute('display') === 'none') {
-    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, '', getObservation.value, latitude, longitude, getEmail.value)
+    writeNewReport(getUserId.value, getServices.value, getCompanyService.value, ' ', getObservation.value, latitude, longitude, getEmail.value)
   } else {
     radioButton.forEach(btn => {
       if (btn.checked) {
@@ -201,7 +211,7 @@ getUserId.addEventListener('keyup', () => {
 getEmail.addEventListener('keyup', () => {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(getEmail.value) || getEmail.value === '') {
     emailInvalid.style.display = 'none';
-  } else{
+  } else {
     emailInvalid.style.display = 'block'
   }
 });
