@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>REPORTEL</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="viewport">
+    <nav class="navbar navbar-expand-lg navbar-light logo">
+      <a class="navbar-brand" href="splash.html">
+        <img src="img/logo-blanco.png" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a id="logOut" class="nav-link" href="report.html">Reporte</a>
+          </li>
+          <li class="nav-item">
+            <a id="logOut" class="nav-link" href="contactus.html">Contáctanos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container margin">
+      <nav class="navbar">
+        <span class="navbar-brand" href="report.html">Nuevo reporte</span>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div id="map"></div>
+    </div>
+
+    <div class="container father-container">
+      <form class="needs-validation" novalidate>
+        <div class="form-group">
+          <label for="dni">DNI o carnet de extranjería</label>
+          <input id="dni" type="text" class="form-control" placeholder="DNI o carnet de extranjería">
+          <div id="documentInvalid" class="invalid-feedback">
+            Por favor digite su número de DNI o carnet de extranjería correctamente.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">Servicio</label>
+          <select id="service" class="form-control">
+            <option selected disabled>Elija una opción</option>
+          </select>
+          <div id="displayInternetFijo" class="feedback">
+              * Estimado usuario, recuerda que las empresas operadoras de telecomunicaciones están obligadas a no darte menos del 40% del servicio de internet contratado.
+          </div>
+          <div id="serviceInvalid" class="invalid-feedback">
+            Por favor escoja el servicio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="companyService">Empresa</label>
+          <select id="companyService" class="form-control">
+            <option selected disabled>Elija una opción</option>
+          </select>
+          <div id="companyInvalid" class="invalid-feedback">
+            Por favor escoja la empresa.
+          </div>
+        </div>
+
+        <div class="form-group" id="signalContainer">
+          <label for="signal">Velocidad de internet</label>
+          <div id="signal">
+          </div>
+          <div id="signalInvalid" class="invalid-feedback">
+            Por favor escoja un tipo de velocidad.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Observaciones</span>
+            </div>
+            <textarea id="observation" class="form-control" aria-label="With textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" class="form-control" placeholder="Correo electrónico">
+          <div class="feedback">
+              * Realiza el seguimiento de tu reporte (opcional)
+          </div>
+          <div id="emailInvalid" class="invalid-feedback">
+            Por favor llenar su correo electrónico correctamente.
+          </div>
+        </div>
+
+        <div class="custom-control custom-checkbox mb-3">
+          <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
+          <label class="custom-control-label" for="customControlValidation1">Verifícame</label>
+          <div id="checkboxInvalid" class="invalid-feedback">Debe aceptar antes de enviar.</div>
+        </div>
+        <div class="right">
+          <button id="submit" type="button" class="btn bg-dark">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="page-footer blue darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ubícanos en nuestras redes sociales</h5>
+          <ul>
+            <li>
+              <a class="white-text text-lighten-3" href="#!">ReporTel@gmail.com</a>
+            </li>
+            <li>
+              <a class="white-text text-lighten-3" href="#!">Facebook:ReporTel</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">ReporTel 2018</h5>
+          <p class="white-text text-lighten-4">Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZpNI0pTvu5kmRjyNY7pjhAmTueRVI7hE&libraries=places&callback=initMap"
+    async defer></script>
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
+  <script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/report.js"></script>
+</body>
+
+</html>

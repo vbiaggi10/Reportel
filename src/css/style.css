@@ -1,0 +1,146 @@
+@media only screen and (min-width: 320px) {
+  body {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+  .viewport {
+    width: 100%;
+    /* height: 100vh; */
+  }
+  .father-container {
+    margin-top: 2rem;
+  }
+  .margin {
+    margin: 2rem auto;
+  }
+  .center {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .center-item {
+    margin: 0 auto;
+  }
+  .btn-mobile {
+    padding: .60rem 1rem;
+    margin: 0;
+  }
+  .logo a img{
+    height: 2rem;
+  }
+  .in-line {
+    display: inline-block;
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
+  .seleccion {
+    margin: auto 2rem;
+  }
+  td .btn[class*=btn-outline-] {
+    padding: .10rem .50rem;
+    margin: 0;
+    text-transform: capitalize;
+  }
+  .navbar,
+  .footerr {
+    background: #1E88E5;
+  }
+  .right {
+    float: right;
+  }
+  .btn-padding {
+    padding: .54rem 1.14rem;
+  }
+  .button-filter {
+    height: auto;
+    margin-bottom: 0.84rem;
+  }
+  .buttons-container {
+    display: none;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .legend-container {
+    display: none;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    margin-top: 0.8rem;
+    padding: 0;
+  }
+  .legend-container .legend{
+    padding: 2rem 1rem;
+
+  }
+  .button-legend{
+    text-align: right;
+  }
+  .button-filter #showButtons,
+  .button-filter #showLegend {
+    width: 100%;
+    font-size: .75rem;
+    padding: 0.2rem;
+  }
+  .button-filter button {
+    width: 69px;
+    padding: 0.37rem;
+    margin: 0;
+    font-size: .65rem;
+  }
+  #map {
+    width: 100%;
+    height: 400px;
+  }
+  .container-button {
+    display: block;
+  }
+  .legend img {
+    width: 100%;
+    height: 350px;
+  }
+  #signalContainer {
+    display: none;
+  }
+  #displayInternetFijo {
+    display: none;
+  }
+  footer {
+    margin-top: 3rem;
+  }
+  .feedback{
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 758px) {
+  .logo a img{
+    height: 3rem;
+  }
+  .container-button {
+    display: flex;
+  }
+  /* .button-filter {
+    height: 54px;
+  }
+  .button-filter button {
+    width: 136px;
+    padding: 0.84rem 2.14rem;
+    font-size: .81rem;
+  } */
+}
+
+@media only screen and (min-width: 960px) {
+  .button-filter {
+    height: auto;
+  }
+}
+
+.pad {
+  margin: 20px;
+}
